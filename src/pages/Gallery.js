@@ -6,6 +6,8 @@ import React from "react";
 import {images} from "../json/images";
 import $ from 'jquery'
 
+
+import ModalSlider from "../components/modal";
 export default class Gallery extends React.Component{
     constructor(props) {
         super(props);
@@ -18,13 +20,16 @@ export default class Gallery extends React.Component{
     componentDidMount() {
         const _ = this
         $('.bg-wp').click(function() {
-            _.setState({slider: true, image: $(this).attr('src')}, () => console.log('state is ', _.state))
+            _.setState({slider: true, image: $(this).attr('src')}, () => {
+                $('#modal-btn').trigger('click')
+            })
         })
     }
 
 
     render() {
         return (
+            <>
             <div className='container'>
                 <div className="d-flex gallery-box justify-content-between">
                     <img className={'col-6 bg-wp bg-f'} src={images[0].img} alt=""/>
@@ -36,6 +41,8 @@ export default class Gallery extends React.Component{
                     </div>
                 </div>
             </div>
+                <ModalSlider />
+            </>
         );
     }
 }
