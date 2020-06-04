@@ -29,11 +29,12 @@ export default class ModalSlider extends React.Component {
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
-            }
+            },
+            initialSlide: this.props.selected
         });
     }
 
-    openModal() {
+    openModal(id) {
         this.setState({show: true}, () => this.swipeUp())
     }
 
@@ -54,7 +55,7 @@ export default class ModalSlider extends React.Component {
                                 className="float-right close-btn">&times;</span>
                             <div className="swiper-wrapper ">
                                 {images.map((image, index) =>
-                                    <img src={image.img} className={"swiper-slide slider-img"}/>
+                                    <img key={index} src={image.img} className={"swiper-slide slider-img"}/>
                                 )}
                             </div>
                             <div className="swiper-button-next">
